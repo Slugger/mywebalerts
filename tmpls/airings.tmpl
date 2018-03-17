@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+      <title>Need to Watch: Results</title>
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="six columns offset-by-three">
+            <div>
+                <h4 style="text-align: center;">Need to Watch</h4>
+                <p style="text-align: center;">
+                    <a href="#">Home</a> | <a href="#">Settings</a> | <a href="#">Help</a> | <a href="#">About</a>
+                </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="three columns">
+                <h5>Google Ads</h5>
+                <div>Ad 1</div>
+                <div>Ad 2</div>
+            </div>
+            <div class="nine columns">
+                <div id="w2w-preamble" style="margin-top: 30px; margin-bottom: 30px">
+                    $esc.html($result.desc)
+                </div>
+                <div id="toc">
+                    <ol id="w2w-toc">
+                        #foreach($media in $result.airings)
+                            <li>
+                                <a href="#match$velocityCount">
+                                    <span>
+                                        $esc.html($media.showName)
+                                        #if("$!media.episodeTitle" != "")
+                                            <i>: $esc.html($media.episodeTitle)</i>
+                                        #end
+                                    </span>
+                                </a>
+                            </li>
+                        #end
+                    </ol>
+                </div>
+                #foreach($media in $result.airings)
+                    <div id="match$velocityCount">
+                        <h3 class="w2w-title" style="margin-bottom: 2px;">
+                            $esc.html($media.showName)
+                            <a href="#w2w-toc" style="font-size: 0.4em; margin-left: 18px;">top</a>
+                        </h3>
+                        <div class="w2w-subtitles" style="margin-top: 0px; margin-bottom: 24px;">
+                            #if("$!media.showPicture" != "")
+                                <img src="//cdn.tvpassport.com/image/show/200x200/$media.showPicture" class="u-pull-right" />
+                            #end
+                            #if("$!media.episodeTitle" != "")
+                                <div class="w2w-subtitle">
+                                    <b>$esc.html($media.episodeTitle)</b>
+                                </div>
+                            #end
+                            <div class="w2w-channel">
+                                <!-- TODO: flesh out channel info -->
+                                <i><span>Airing tonight on $!esc.html($media.channel.callsign)</span></i>
+                            </div>
+                        </div>
+                        <div class="w2w-desc" style="margin-bottom: 5px;">
+                            <p>$!esc.html($media.description)</p>
+                        </div>
+                        <!-- TODO: Credits -->
+                        <hr style="margin-top: 75px;" />
+                    </div>
+                #end
+            </div>
+        </div>
+      </div>
+    </body>
+</html>
+
