@@ -61,15 +61,26 @@
                                     <b>$esc.html($media.episodeTitle)</b>
                                 </div>
                             #end
-                            <div class="w2w-channel">
-                                <!-- TODO: flesh out channel info -->
-                                <i><span>Airing tonight on $!esc.html($media.channel.callsign)</span></i>
-                            </div>
+                            $result.chanInfo.get($media.channel.id)
                         </div>
                         <div class="w2w-desc" style="margin-bottom: 5px;">
                             <p>$!esc.html($media.description)</p>
                         </div>
-                        <!-- TODO: Credits -->
+                        #if("$!media.showHost" != "")
+                           <div class="w2w-credits">
+                              <i><b>Host:</b> $esc.html($media.showHost)</i>
+                           </div>
+                        #end
+                        #if("$!media.cast" != "") 
+                           <div class="w2w-credits">
+                              <i><b>Starring:</b> $esc.html($media.cast)</i>
+                           </div>
+                        #end
+                        #if("$!media.guest" != "")
+                           <div class="w2w-credits">
+                              <i><b>Guest Stars: </b>$esc.html($media.guest)</i>
+                           </div>
+                        #end
                         <hr style="margin-top: 75px;" />
                     </div>
                 #end
