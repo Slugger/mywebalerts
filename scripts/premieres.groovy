@@ -13,6 +13,6 @@ def premieres = listings.findAll {
 }.unique { it.showId }
 def chanInfo = [:]
 premieres.each {
-   chanInfo[it.channel.id] = TvMediaUtils.channelDetails(it.channel)
+   chanInfo[it.channel.id] = new TvMediaUtils().channelDetails(it.channel)
 }
 [desc: 'Today\'s Premieres', airings: premieres, tmpl: 'airings.tmpl', size: premieres?.size(), subject: 'Today\'s TV Premieres', chanInfo: chanInfo]

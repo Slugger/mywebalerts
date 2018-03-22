@@ -42,18 +42,23 @@
                 #foreach($media in $result.movies)
                     <div id="match$velocityCount">
                         <h3 class="w2w-title" style="margin-bottom: 2px;">
-                            <!-- TODO: link to web site when available -->
-                            $esc.html($media.title)
+                            #if("$!media.officialWebsite" != "")
+                               <a href="$media.officialWebsite" target="_blank">$esc.html($media.title)</a>
+                            #else
+                               $esc.html($media.title)
+                            #end
                             <a href="#w2w-toc" style="font-size: 0.4em; margin-left: 18px;">top</a>
                         </h3>
                         <div class="w2w-quick-facts" style="margin-top: 0px; margin-bottom: 24px;">
-                            <i>Quick facts coming soon...</i>
+                            $result.utils.movieQuickFacts($media)
                         </div>
-                        <!-- TODO: Credits -->
+			<div style="margin:8px 0px 8px 0px;">$result.utils.credits($media)</div>
                         <div class="w2w-desc" style="margin-bottom: 5px;">
                             <p>$esc.html($media.description)</p>
+                            #if("$!media.picture" != "")
+                                <img src="//api.tvmedia.ca/images/shows/$media.picture" class="u-pull-right" />
+                            #end
                         </div>
-                        <!-- TODO: embed trailer clip -->
                         <hr style="margin-top: 75px;" />
                     </div>
                 #end

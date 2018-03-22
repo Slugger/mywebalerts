@@ -9,4 +9,4 @@ def end = start + 7
 log.debug "Checking for new movies being released between $start and $end"
 def listings = tvmClient.searchMovies(new ReleasedAfterOption(start), new ReleasedBeforeOption(end))
 log.debug "Found ${listings.size()} new releases!"
-[desc: 'A list of new movies scheduled for theatrical release in the US over the next week.', movies: listings, tmpl: 'movies.tmpl', size: listings?.size(), subject: 'This Week\'s Theatrical Movie Releases']
+[desc: 'A list of new movies scheduled for theatrical release in the US over the next week.', movies: listings, tmpl: 'movies.tmpl', size: listings?.size(), subject: 'This Week\'s Theatrical Movie Releases', utils: new TvMediaUtils()]
