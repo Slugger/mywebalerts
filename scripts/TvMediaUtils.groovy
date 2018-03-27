@@ -56,6 +56,13 @@ class TvMediaUtils {
       facts.findAll { it }.join(' | ')
    }
 
+   String airingQuickFacts(Airing a) {
+      def facts = []
+      facts << a.showType
+      facts << a.rating
+      facts.findAll { it }.join(' | ')
+   }
+
    String channelDetails(Channel c) {
       def writer = new StringWriter()
       def markup = new MarkupBuilder(writer)
